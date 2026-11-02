@@ -3,22 +3,39 @@
   "version": "1.0.0",
   "description": "Local-first weekly youth-sport carpool routing and fairness engine",
   "scripts": {
-    "build": "tsc -p tsconfig.json && esbuild src/solver/worker.ts src/browser.ts --bundle --format=esm --outdir=dist/web",
+    "build": "npm run typecheck && npm run build:engine && vite build",
     "test": "npm run gates",
     "gates": "npm run build && node dist/tests/gates.js",
-    "demo": "npm run build && node dist/src/cli.js"
+    "demo": "npm run build && node dist/src/cli.js",
+    "build:engine": "tsc -p tsconfig.json && esbuild src/solver/worker.ts src/browser.ts --bundle --format=esm --outdir=dist/web",
+    "typecheck": "tsc --strict --noEmit -p tsconfig.json && tsc --strict -p tsconfig.ui.json",
+    "lint": "eslint .",
+    "dev": "vite --host 127.0.0.1",
+    "preview": "vite preview --host 127.0.0.1",
+    "e2e": "npm run build && node dist/tests/ui.js"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "esbuild": "^0.28.2",
+    "eslint": "^10.14.0",
+    "ical.js": "^2.2.1",
     "playwright": "^1.64.1",
-    "typescript": "^5.9.3"
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.5"
   }
 }

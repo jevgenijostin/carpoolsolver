@@ -126,7 +126,7 @@ export function solve(i: Instance, options: SolveOptions = {}): Schedule {
   };
   for (let restart = 0; restart < 8; restart++) {
     const restartPlan = restart === 0 ? initial : greedy(i, random) ?? best.legs.map(l => l.routes);
-    let current = restartPlan.map(rs => [...rs]);
+    const current = restartPlan.map(rs => [...rs]);
     let loads = i.households.map(h => current.flat().filter(r => r.driverId === h.id).reduce((s, r) => s + r.minutes, 0)), value = score(loads);
     if (value < best.J - 1e-9) best = schedule(i, current);
     const startTemp = Math.max(12, best.J / Math.max(1, i.legs.length) * 0.7);

@@ -1,0 +1,21 @@
+{
+  "chromium": "156.0.8078.4",
+  "viewport": "390×844 + 1440×1000",
+  "solveMs": 119.90999999999997,
+  "elapsedMs": 2155.7574999999997,
+  "resultLegs": 5,
+  "lambda": 2,
+  "messagesCopied": 6,
+  "icsEvents": 5,
+  "expectedEvents": 5,
+  "icsParsed": true,
+  "jsonDownloaded": true,
+  "persistedConfirmation": true,
+  "duplicateConfirmationBlocked": true,
+  "placementEdited": true,
+  "infeasibilityDisplayed": true,
+  "mobileOverflow": false,
+  "workers": 4,
+  "consoleErrors": 0,
+  "externalRequests": 0
+}

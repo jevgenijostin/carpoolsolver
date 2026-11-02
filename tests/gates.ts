@@ -19,6 +19,7 @@ import type { Instance, Schedule } from '../src/model.js';
 import { tiny, symmetric, performanceWeek } from './fixtures.js';
 import { brute } from './brute.js';
 import { regressions } from './regressions.js';
+import { uiGate } from './ui.js';
 
 type Stats = Record<string, unknown>;
 interface Gate { id: string; pass: boolean; seconds: number; stats: Stats; error?: string }
@@ -280,5 +281,6 @@ await gate('G9', stats => {
   Object.assign(stats, { roundTrips: samples.length, malformedRejected: errors.length, readableErrors: errors, goldenSnapshots: 1, historyStorageRoundTrip: true, demoBaselineValidated: true });
 });
 
-console.log(`${results.filter(r => r.pass).length}/9 gates green. Full measurements: reports/gates.json`);
+await gate('G10', async stats => { Object.assign(stats, await uiGate()); });
+console.log(`${results.filter(r => r.pass).length}/10 gates green. Full measurements: reports/gates.json`);
 if (results.some(r => !r.pass)) process.exitCode = 1;

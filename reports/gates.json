@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T21:06:02.612Z",
+  "generatedAt": "2026-11-02T21:27:19.156Z",
   "node": "v24.17.0",
   "platform": "win32",
   "arch": "x64",
@@ -8,7 +8,7 @@
     {
       "id": "G1",
       "pass": true,
-      "seconds": 9.2361091,
+      "seconds": 9.0759834,
       "stats": {
         "importGraph": [
           "src/validator/index.ts",
@@ -31,7 +31,7 @@
     {
       "id": "G2",
       "pass": true,
-      "seconds": 22.9909005,
+      "seconds": 23.531972200000006,
       "stats": {
         "instances": 300,
         "matches": 300,
@@ -45,7 +45,7 @@
     {
       "id": "G3",
       "pass": true,
-      "seconds": 0.5686731999999974,
+      "seconds": 0.5930911000000051,
       "stats": {
         "microInstances": 50,
         "exactAgreementPercent": 100,
@@ -55,7 +55,7 @@
     {
       "id": "G4",
       "pass": true,
-      "seconds": 3.6886388000000006,
+      "seconds": 3.7144408000000038,
       "stats": {
         "instances": 10,
         "byteIdenticalPercent": 100,
@@ -71,7 +71,7 @@
     {
       "id": "G5",
       "pass": true,
-      "seconds": 0.009213199999998324,
+      "seconds": 0.004909599999999045,
       "stats": {
         "cases": {
           "CAPACITY_SHORT": 5,
@@ -85,7 +85,7 @@
     {
       "id": "G6",
       "pass": true,
-      "seconds": 0.198274599999997,
+      "seconds": 0.24041240000000108,
       "stats": {
         "lambdaGrid": [
           0,
@@ -153,7 +153,7 @@
     {
       "id": "G7",
       "pass": true,
-      "seconds": 0.600555100000005,
+      "seconds": 1.0301393000000025,
       "stats": {
         "sequentialWeeks": [
           {
@@ -306,26 +306,26 @@
     {
       "id": "G8",
       "pass": true,
-      "seconds": 0.7973762999999963,
+      "seconds": 1.2467796000000018,
       "stats": {
         "legs": 10,
         "stopsPerLeg": 12,
         "availableDrivers": 6,
         "runsMs": [
-          140.62419999999838,
-          148.04260000000068,
-          137.94479999999749,
-          170.46779999999853,
-          196.38640000000305
+          278.07420000000275,
+          253.59410000000207,
+          231.16429999999673,
+          238.4161000000022,
+          240.40959999999905
         ],
-        "medianMs": 148.04260000000068,
+        "medianMs": 240.40959999999905,
         "limitMs": 3000
       }
     },
     {
       "id": "G9",
       "pass": true,
-      "seconds": 0.02602730000000156,
+      "seconds": 0.041734199999998965,
       "stats": {
         "roundTrips": 21,
         "malformedRejected": 10,
@@ -344,6 +344,32 @@
         "goldenSnapshots": 1,
         "historyStorageRoundTrip": true,
         "demoBaselineValidated": true
+      }
+    },
+    {
+      "id": "G10",
+      "pass": true,
+      "seconds": 2.0254560000000055,
+      "stats": {
+        "chromium": "156.0.8078.4",
+        "viewport": "390×844 + 1440×1000",
+        "solveMs": 153.09189999999944,
+        "elapsedMs": 1893.4487000000008,
+        "resultLegs": 5,
+        "lambda": 2,
+        "messagesCopied": 6,
+        "icsEvents": 5,
+        "expectedEvents": 5,
+        "icsParsed": true,
+        "jsonDownloaded": true,
+        "persistedConfirmation": true,
+        "duplicateConfirmationBlocked": true,
+        "placementEdited": true,
+        "infeasibilityDisplayed": true,
+        "mobileOverflow": false,
+        "workers": 4,
+        "consoleErrors": 0,
+        "externalRequests": 0
       }
     }
   ]
