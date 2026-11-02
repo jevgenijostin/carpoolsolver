@@ -9,7 +9,7 @@ function free(i: Instance, routes: Route[][], li: number, d: string): boolean {
 }
 function orderedStops(i: Instance, l: Leg): string[] {
   const v = i.venues.find(v => v.id === l.venueId)!.placeId;
-  return stopsFor(i, l).sort((a, b) => travel(i, i.households.find(h => h.id === b)!.placeId, v) - travel(i, i.households.find(h => h.id === a)!.placeId, v) || a.localeCompare(b, 'en'));
+  return stopsFor(i, l).sort((a, b) => travel(i, i.households.find(h => h.id === b)!.placeId, v) - travel(i, i.households.find(h => h.id === a)!.placeId, v) || (a < b ? -1 : a > b ? 1 : 0));
 }
 function greedy(i: Instance, random?: () => number): Route[][] | undefined {
   const routes: Route[][] = i.legs.map(() => []);

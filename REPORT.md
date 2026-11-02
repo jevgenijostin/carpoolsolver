@@ -15,7 +15,7 @@ Local measurements: Windows x64, Intel Core Ultra 7 155U, Node v24.17.0, Chromiu
 | G5 | PASS | 20/20 correct infeasibility reason codes, 100%; oracle confirms all failures |
 | G6 | PASS | 100/100 monotonic lambda comparisons; 8 symmetric cases, spread 0 min ≤6 min |
 | G7 | **FAIL** | Two 8-week simulations have max spread 6 min ≤6, weekly slack 0; arbitrary-history conservation counterexample has slack 30 >1.5 min |
-| G8 | PASS | Median 282.7824 ms ≤3,000; five runs 247.3390, 273.2332, 282.7824, 334.8242, 288.8393 ms |
+| G8 | PASS | Median 279.1785 ms ≤3,000; five runs 274.2433, 272.0788, 298.8892, 279.1785, 305.4670 ms |
 | G9 | PASS | 21 round-trips, 10 readable malformed-input rejections, 1 fixed golden message, history storage/JSON round-trips and validated baseline |
 
 The initial G2 run matched 296/300 but failed the 5% maximum-gap ceiling (worst 18.42%). Diversified restart assignments and a higher annealing starting temperature fixed all four misses on the unchanged corpus. No threshold was relaxed and no oracle is called by the solver.

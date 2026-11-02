@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T20:30:00.187Z",
+  "generatedAt": "2026-11-02T20:33:52.365Z",
   "node": "v24.17.0",
   "platform": "win32",
   "arch": "x64",
@@ -8,7 +8,7 @@
     {
       "id": "G1",
       "pass": true,
-      "seconds": 9.596980499999999,
+      "seconds": 10.5694103,
       "stats": {
         "importGraph": [
           "src/validator/index.ts",
@@ -31,7 +31,7 @@
     {
       "id": "G2",
       "pass": true,
-      "seconds": 26.5693075,
+      "seconds": 25.7074821,
       "stats": {
         "instances": 300,
         "matches": 300,
@@ -45,7 +45,7 @@
     {
       "id": "G3",
       "pass": true,
-      "seconds": 0.6027531000000017,
+      "seconds": 0.6525216999999975,
       "stats": {
         "microInstances": 50,
         "exactAgreementPercent": 100,
@@ -55,7 +55,7 @@
     {
       "id": "G4",
       "pass": true,
-      "seconds": 3.9862142999999994,
+      "seconds": 3.621393000000004,
       "stats": {
         "instances": 10,
         "byteIdenticalPercent": 100,
@@ -71,7 +71,7 @@
     {
       "id": "G5",
       "pass": true,
-      "seconds": 0.009554000000003724,
+      "seconds": 0.008586699999999838,
       "stats": {
         "cases": {
           "CAPACITY_SHORT": 5,
@@ -85,7 +85,7 @@
     {
       "id": "G6",
       "pass": true,
-      "seconds": 0.23974979999999776,
+      "seconds": 0.15951820000000588,
       "stats": {
         "lambdaGrid": [
           0,
@@ -153,7 +153,7 @@
     {
       "id": "G7",
       "pass": false,
-      "seconds": 1.0184775000000008,
+      "seconds": 0.9760368000000017,
       "stats": {
         "sequentialWeeks": [
           {
@@ -284,26 +284,26 @@
     {
       "id": "G8",
       "pass": true,
-      "seconds": 1.4310936,
+      "seconds": 1.4382324000000009,
       "stats": {
         "legs": 10,
         "stopsPerLeg": 12,
         "availableDrivers": 6,
         "runsMs": [
-          247.33899999999994,
-          273.2331999999951,
-          282.7824000000037,
-          334.82420000000275,
-          288.83929999999964
+          274.24329999999463,
+          272.07880000000296,
+          298.8891999999978,
+          279.1785000000018,
+          305.4670000000042
         ],
-        "medianMs": 282.7824000000037,
+        "medianMs": 279.1785000000018,
         "limitMs": 3000
       }
     },
     {
       "id": "G9",
       "pass": true,
-      "seconds": 0.06920300000000133,
+      "seconds": 0.02615350000000035,
       "stats": {
         "roundTrips": 21,
         "malformedRejected": 10,

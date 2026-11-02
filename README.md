@@ -148,7 +148,7 @@ The seeded G2 corpus includes both directions, siblings, nonzero signed history,
 | G5 | PASS | 20/20 constructed failures correctly diagnosed (100%; 5 per reason), also confirmed infeasible by oracle |
 | G6 | PASS | 100/100 adjacent lambda comparisons; 8 symmetric cases with spread 0 against typical-leg bound 6 min |
 | G7 | **FAIL** | 2 × 8-week simulations: spread ≤6 min, slack 0; nonzero-history case changes sum by 30 min, allowance 1.5 min |
-| G8 | PASS | Median **282.78 ms** (limit 3,000 ms); five runs: 247.34, 273.23, 282.78, 334.82, 288.84 ms |
+| G8 | PASS | Median **279.18 ms** (limit 3,000 ms); five runs: 274.24, 272.08, 298.89, 279.18, 305.47 ms |
 | G9 | PASS | 21/21 exact JSON round-trips; 10/10 malformed inputs rejected readably; 1 fixed parent-message golden snapshot; ledger storage/JSON and naive demo validation |
 
 G8's timings are measurements, not constants asserted by the test. Gate output records every individual run. CI reruns all gates on both operating systems; measured timing may differ.
