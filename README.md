@@ -2,7 +2,7 @@
 
 Local-first TypeScript engine for weekly youth-sport carpools. Includes a seeded weekly solver, independent validator, bounded exact oracle, signed-minute fairness ledger, naive baseline, JSON I/O, parent messages, browser Web Worker, and verified **U10 Tigers** CLI demo (9 kids, 6 households, 2 venues, 5 legs). No server or external routing service is required. UI and G10 are deferred.
 
-**Acceptance status: 9/9 green locally.** The ledger carry-forward uses weekly loads only, preserving incoming history within rounding slack. The in-week fairness objective still includes history. See [REPORT.md](REPORT.md) for measured results and CI evidence.
+**Acceptance status: 9/9 green locally and on Ubuntu/Windows CI.** The ledger carry-forward uses weekly loads only, preserving incoming history within rounding slack. The in-week fairness objective still includes history. See [REPORT.md](REPORT.md) for measured results and CI evidence.
 
 ## Run
 

@@ -1,6 +1,6 @@
 # Ledger conservation fix — 2026-11-02
 
-**9/9 gates pass locally** after correcting the specification implemented at `9c4e439`.
+**9/9 gates pass locally and on both CI runners** after correcting the specification implemented at `9c4e439`.
 
 Verified algebra: the old update subtracts shares summing to `sum(H + L)`, so it resets the ledger total toward zero. Carry-forward now uses `muCarry = sum(L)/W`; its total changes only by rounding error, bounded by households/2. The in-week objective remains `F = sum |W*(H+L) - w*sum(H+L)|/W`, `J = sum(L) + lambda*F`. The solver, core/oracle, independent validator, and brute-force reference retain that objective. No gate threshold was relaxed.
 
@@ -20,4 +20,11 @@ Local full-suite command: `npm run gates` (exit 0), including strict TypeScript 
 | G8 | PASS | Median **148.0426 ms** (limit 3,000 ms); five runs: 140.6242, 148.0426, 137.9448, 170.4678, 196.3864 ms |
 | G9 | PASS | 21/21 exact JSON round-trips; 10/10 malformed inputs rejected readably; 1 fixed parent-message golden snapshot; ledger storage/JSON and naive demo validation |
 
-CI verification for this fix is pending the push. The existing `reports/ci/ubuntu.json` and `reports/ci/windows.json` are historical evidence from run 41520437403 before the correction (8/9, G7 red), not results for this fix.
+[GitHub Actions run 41525283866](https://github.com/jevgenijostin/carpoolsolver/actions/runs/41525283866) completed successfully on both Ubuntu and Windows for fix commit `b98570a01696d2b1cd0effc5f050b4879210d2c1`. Both ran all nine gates and the verified demo. Downloaded artifacts confirm the same G1–G7/G9 counts and results as the local table, including G7 30 → 30 (slack 0), weighted-history slack 1, and G2 300/300 optimum matches.
+
+| Runner | Node | G8 median (ms) | Raw runs (ms) | Result |
+| --- | --- | --- | --- | --- |
+| ubuntu-latest | v24.22.1 | 122.480754 | 139.156140, 113.691966, 122.480754, 137.056485, 107.489914 | 9/9 PASS |
+| windows-latest | v24.22.2 | 154.979700 | 181.553800, 154.979700, 146.438500, 158.803600, 124.839600 | 9/9 PASS |
+
+Downloaded CI evidence: [Ubuntu](reports/ci/ubuntu.json), [Windows](reports/ci/windows.json). This report/evidence update changes no engine code, gate code, or CI configuration.
