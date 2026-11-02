@@ -151,7 +151,7 @@ The seeded G2 corpus includes both directions, siblings, nonzero signed history,
 | G8 | PASS | Median **279.18 ms** (limit 3,000 ms); five runs: 274.24, 272.08, 298.89, 279.18, 305.47 ms |
 | G9 | PASS | 21/21 exact JSON round-trips; 10/10 malformed inputs rejected readably; 1 fixed parent-message golden snapshot; ledger storage/JSON and naive demo validation |
 
-G8's timings are measurements, not constants asserted by the test. Gate output records every individual run. CI reruns all gates on both operating systems; measured timing may differ.
+G8's timings are measurements, not constants asserted by the test. Gate output records every individual run. [Completed matrix CI](https://github.com/jevgenijostin/carpoolsolver/actions/runs/41520437403) confirmed **8/9 on both runners, solely G7 red**; verified demos succeeded. G8 medians were **111.15 ms on Ubuntu** and **131.44 ms on Windows**. Downloaded evidence and revision details are in [REPORT.md](REPORT.md) and `reports/ci/`.
 
 ## Demo and files
 

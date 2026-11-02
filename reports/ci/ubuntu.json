@@ -1,0 +1,328 @@
+{
+  "generatedAt": "2026-11-02T20:35:26.428Z",
+  "node": "v24.22.1",
+  "platform": "linux",
+  "arch": "x64",
+  "cpu": "AMD EPYC 7763 64-Core Processor",
+  "gates": [
+    {
+      "id": "G1",
+      "pass": true,
+      "seconds": 8.316914957,
+      "stats": {
+        "importGraph": [
+          "carpoolsolver/src/validator/index.ts",
+          "carpoolsolver/src/model.ts"
+        ],
+        "randomOutputs": 200,
+        "mutations": {
+          "MISSING_KID": 5,
+          "DUPLICATE_KID": 5,
+          "CAPACITY": 5,
+          "UNAVAILABLE_DRIVER": 5,
+          "OVERLAP": 5,
+          "RIDE_CAP": 5
+        },
+        "correctRejections": 30,
+        "accountingMutations": 3,
+        "adversarialRegressions": 9
+      }
+    },
+    {
+      "id": "G2",
+      "pass": true,
+      "seconds": 12.221365497999999,
+      "stats": {
+        "instances": 300,
+        "matches": 300,
+        "matchPercent": 100,
+        "belowOracle": 0,
+        "maxGapPercent": 0,
+        "maxReachableStates": 4325,
+        "misses": []
+      }
+    },
+    {
+      "id": "G3",
+      "pass": true,
+      "seconds": 0.29269741900000007,
+      "stats": {
+        "microInstances": 50,
+        "exactAgreementPercent": 100,
+        "maxDistinctDurationsForOneSubset": 16
+      }
+    },
+    {
+      "id": "G4",
+      "pass": true,
+      "seconds": 3.331986793,
+      "stats": {
+        "instances": 10,
+        "byteIdenticalPercent": 100,
+        "runtimes": [
+          "Node main x2",
+          "Node worker_threads",
+          "Chromium main",
+          "Chromium module Web Worker"
+        ],
+        "chromium": "156.0.8078.4"
+      }
+    },
+    {
+      "id": "G5",
+      "pass": true,
+      "seconds": 0.00629131199999756,
+      "stats": {
+        "cases": {
+          "CAPACITY_SHORT": 5,
+          "NO_DRIVER": 5,
+          "RIDE_CAP": 5,
+          "OVERLAP": 5
+        },
+        "correctPercent": 100
+      }
+    },
+    {
+      "id": "G6",
+      "pass": true,
+      "seconds": 0.1439704559999991,
+      "stats": {
+        "lambdaGrid": [
+          0,
+          0.25,
+          0.5,
+          1,
+          2,
+          3
+        ],
+        "instances": 20,
+        "monotonicComparisons": 100,
+        "violations": 0,
+        "symmetricResults": [
+          {
+            "families": 2,
+            "legs": 1,
+            "spread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "legs": 2,
+            "spread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "legs": 3,
+            "spread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "legs": 4,
+            "spread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "legs": 1,
+            "spread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "legs": 2,
+            "spread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "legs": 3,
+            "spread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "legs": 4,
+            "spread": 0,
+            "typicalLegMinutes": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "G7",
+      "pass": false,
+      "seconds": 0.5723369579999998,
+      "stats": {
+        "sequentialWeeks": [
+          {
+            "families": 2,
+            "week": 1,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "week": 2,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "week": 3,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "week": 4,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "week": 5,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "week": 6,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "week": 7,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 2,
+            "week": 8,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "week": 1,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "week": 2,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "week": 3,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "week": 4,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "week": 5,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "week": 6,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 0,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "week": 7,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          },
+          {
+            "families": 3,
+            "week": 8,
+            "slack": 0,
+            "cumulativeAdjustedSpread": 6,
+            "typicalLegMinutes": 6
+          }
+        ],
+        "maxWeeklySlack": 0,
+        "maxCumulativeSpread": 6,
+        "nonzeroHistory": {
+          "beforeSum": 30,
+          "afterSum": 0,
+          "slack": 30,
+          "allowedSlack": 1.5
+        },
+        "exactFormulaImplemented": true
+      },
+      "error": "Brief contradiction: exact update changes history sum 30 -> 0, slack 30 >1.5"
+    },
+    {
+      "id": "G8",
+      "pass": true,
+      "seconds": 0.5627866859999995,
+      "stats": {
+        "legs": 10,
+        "stopsPerLeg": 12,
+        "availableDrivers": 6,
+        "runsMs": [
+          117.56616699999722,
+          111.15274700000009,
+          113.66997300000003,
+          108.89378199999919,
+          109.33968400000231
+        ],
+        "medianMs": 111.15274700000009,
+        "limitMs": 3000
+      }
+    },
+    {
+      "id": "G9",
+      "pass": true,
+      "seconds": 0.014662293999997928,
+      "stats": {
+        "roundTrips": 21,
+        "malformedRejected": 10,
+        "readableErrors": [
+          "Invalid JSON: could not parse instance",
+          "Invalid instance: places: Invalid input: expected array, received undefined; households: Invalid input: expected array, received undefined; kids: Invalid input: expected array, received undefined; venues: Invalid input: expected array, received undefined; legs: Invalid input: expected array, received undefined; params: Invalid input: expected object, received undefined; history: Invalid input: expected record, received undefined",
+          "Invalid instance: : Unrecognized key: \"surprise\"",
+          "Invalid instance: households.0.seats: Too small: expected number to be >=0",
+          "Invalid instance: kids.0.householdId: Unknown household",
+          "Invalid instance: legs.0.winStart: Invalid input: expected int, received number",
+          "Invalid instance: legs.0.kidIds: IDs must be unique",
+          "Invalid instance: travelOverride.p0.p0: Matrix must be complete, diagonal zero, other entries positive; travelOverride.p0.p1: Matrix must be complete, diagonal zero, other entries positive; travelOverride.p0.p2: Matrix must be complete, diagonal zero, other entries positive; travelOverride.p0.p3: Matrix must be complete, diagonal zero, other entries positive; travelOverride.p0.p4: Matrix must be complete, diagonal zero, other entries positive; travelOverride.p0.p5: Matrix must be complete, diagonal zero, other entries positive; travelOverride.p0.field: Matrix must be complete, diagonal zero, other entries positive; travelOverride.p0.hall: Matrix must be complete, diagonal zero, other entries positive; and 56 more errors",
+          "Invalid instance: history.unknown: Unknown history household",
+          "Invalid instance: places.0.x: Invalid input: expected number, received null"
+        ],
+        "goldenSnapshots": 1,
+        "historyStorageRoundTrip": true,
+        "demoBaselineValidated": true
+      }
+    }
+  ]
+}
