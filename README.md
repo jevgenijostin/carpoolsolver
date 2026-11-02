@@ -1,8 +1,10 @@
 # CarpoolSolver
 
-Local-first TypeScript engine for weekly youth-sport carpools. Includes a seeded weekly solver, independent validator, bounded exact oracle, signed-minute fairness ledger, naive baseline, JSON I/O, parent messages, browser Web Worker, and verified **U10 Tigers** CLI demo (9 kids, 6 households, 2 venues, 5 legs). No server or external routing service is required. UI and G10 are deferred.
+Local-first TypeScript engine and React UI for weekly youth-sport carpools. Includes a seeded weekly solver, independent validator, bounded exact oracle, signed-minute fairness ledger, naive baseline, JSON I/O, parent messages, browser Web Worker, and verified **U10 Tigers** demo (9 kids, 6 households, 2 venues, 5 legs) with 5 mobile-first screens (Roster & Places, Week, Result board, Messages/Export, Ledger). No server or external routing service is required.
 
-**Acceptance status: 9/9 green locally and on Ubuntu/Windows CI.** The ledger carry-forward uses weekly loads only, preserving incoming history within rounding slack. The in-week fairness objective still includes history. See [REPORT.md](REPORT.md) for measured results and CI evidence.
+**Live demo:** https://jevgenijostin.github.io/carpoolsolver/
+
+**Acceptance status: 10/10 green locally and on Ubuntu/Windows CI** (G1-G9 engine, G10 Playwright e2e on the UI). The ledger carry-forward uses weekly loads only, preserving incoming history within rounding slack. The in-week fairness objective still includes history. See [REPORT.md](REPORT.md) for measured results and CI evidence.
 
 ## Run
 
@@ -17,7 +19,7 @@ npm run demo
 node dist/src/cli.js fixtures/u10-tigers.json
 ```
 
-On Linux, use `npx playwright install --with-deps chromium`. `npm run build` type-checks in strict mode and emits Node ESM/declarations in `dist/src` and self-contained browser modules in `dist/web`. Chromium is used solely to test the actual engine Web Worker; there is no UI or G10 implementation.
+On Linux, use `npx playwright install --with-deps chromium`. `npm run build` type-checks in strict mode, emits Node ESM/declarations in `dist/src`, self-contained browser modules in `dist/web`, and the Vite app bundle in `dist/app`. Chromium runs the full G10 e2e flow against the real UI and engine Web Worker (`npm run e2e`). `npm run dev` starts the Vite dev server for local UI work.
 
 Gate measurements are written to [`reports/gates.json`](reports/gates.json), including OS, CPU, Node version, raw timings, failures, and sample counts. All 300 heuristic/oracle comparisons, with seeds and dimensions, are in [`reports/oracle-comparison.json`](reports/oracle-comparison.json). GitHub Actions runs the same command on **ubuntu-latest and windows-latest**, fails on any red gate, and always uploads the measurements and runs the demo. No `continue-on-error`.
 
