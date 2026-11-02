@@ -1,38 +1,23 @@
-# Engine round report — 2026-11-02
+# Ledger conservation fix — 2026-11-02
 
-Implemented the strict TypeScript engine, independent validator, labelled Held–Karp/vector oracle, seeded 8-restart heuristic, actual browser worker, ledger/localStorage/JSON adapters, naive baseline, parent messages, U10 Tigers JSON/demo CLI, G1–G9, MIT license, README, and Ubuntu/Windows CI. UI and G10 are deferred as requested.
+**9/9 gates pass locally** after correcting the specification implemented at `9c4e439`.
 
-**8/9 gates pass. G7 fails honestly.** The requested ledger formula is implemented exactly. With valid history `{h0:10,h1:10,h2:10}`, it changes total history from 30 to 0. That is a 30-minute change, exceeding the stated 1.5-minute conservation allowance. Changing either the formula or invariant requires a specification decision. The test exits nonzero and CI does not hide the failure.
+Verified algebra: the old update subtracts shares summing to `sum(H + L)`, so it resets the ledger total toward zero. Carry-forward now uses `muCarry = sum(L)/W`; its total changes only by rounding error, bounded by households/2. The in-week objective remains `F = sum |W*(H+L) - w*sum(H+L)|/W`, `J = sum(L) + lambda*F`. The solver, core/oracle, independent validator, and brute-force reference retain that objective. No gate threshold was relaxed.
 
-Local measurements: Windows x64, Intel Core Ultra 7 155U, Node v24.17.0, Chromium 156.0.8078.4. Full raw output: [reports/gates.json](reports/gates.json). Seed-by-seed G2 output: [reports/oracle-comparison.json](reports/oracle-comparison.json).
+G7's original counterexample is now **30 → 30**, slack **0 ≤1.5 minutes**. Both 8-week simulations retain maximum weekly slack 0 and maximum cumulative adjusted spread 6 minutes against a 6-minute bound. New weights 2:1:1 exercise rounding with positive and negative history: **30 → 29** and **−21 → −22**, each slack **1 ≤1.5 minutes**.
 
-| Gate | Status | Actual result |
+Local full-suite command: `npm run gates` (exit 0), including strict TypeScript build and real Chromium main/worker checks. Windows x64, Intel Core Ultra 7 155U, Node v24.17.0, Chromium 156.0.8078.4. Raw results: [reports/gates.json](reports/gates.json); all 300 oracle comparisons: [reports/oracle-comparison.json](reports/oracle-comparison.json).
+
+| Gate | Status | Measured result |
 | --- | --- | --- |
-| G1 | PASS | 200 valid random outputs; 30 correct corruption rejections (5×6 types); isolated import graph; 3 additional accounting mutations; 9 adversarial regressions |
-| G2 | PASS | 300/300 optimum matches, 100%; below-oracle violations 0; maximum gap 0%; largest reachable set 4,325 |
-| G3 | PASS | 50/50 exact brute-force agreements; up to 16 distinct durations for one tested subset |
-| G4 | PASS | 10/10 byte-identical across repeat Node main, Node worker, Chromium main, Chromium module Web Worker |
-| G5 | PASS | 20/20 correct infeasibility reason codes, 100%; oracle confirms all failures |
-| G6 | PASS | 100/100 monotonic lambda comparisons; 8 symmetric cases, spread 0 min ≤6 min |
-| G7 | **FAIL** | Two 8-week simulations have max spread 6 min ≤6, weekly slack 0; arbitrary-history conservation counterexample has slack 30 >1.5 min |
-| G8 | PASS | Median 279.1785 ms ≤3,000; five runs 274.2433, 272.0788, 298.8892, 279.1785, 305.4670 ms |
-| G9 | PASS | 21 round-trips, 10 readable malformed-input rejections, 1 fixed golden message, history storage/JSON round-trips and validated baseline |
+| G1 | PASS | 200/200 valid random plans; 30/30 schedule corruptions rejected with their expected codes (5 each of 6 kinds); import graph isolated; 3 accounting corruptions and 9 adversarial regressions |
+| G2 | PASS | 300/300 exact matches (100%); 0 below oracle; maximum gap 0%; maximum reachable set 4,325 states |
+| G3 | PASS | 50/50 micro-instance exact agreements (100%); multiple route-duration labels explicitly retained |
+| G4 | PASS | 10/10 instances byte-identical across repeated Node main, Node worker, Chromium main, and actual Chromium module worker |
+| G5 | PASS | 20/20 constructed failures correctly diagnosed (100%; 5 per reason), also confirmed infeasible by oracle |
+| G6 | PASS | 100/100 adjacent lambda comparisons; 8 symmetric cases with spread 0 against typical-leg bound 6 min |
+| G7 | PASS | 2 × 8-week simulations: spread ≤6 min, slack 0; nonzero history 30 → 30; weighted signed histories have slack 1 ≤1.5 min |
+| G8 | PASS | Median **148.0426 ms** (limit 3,000 ms); five runs: 140.6242, 148.0426, 137.9448, 170.4678, 196.3864 ms |
+| G9 | PASS | 21/21 exact JSON round-trips; 10/10 malformed inputs rejected readably; 1 fixed parent-message golden snapshot; ledger storage/JSON and naive demo validation |
 
-The initial G2 run matched 296/300 but failed the 5% maximum-gap ceiling (worst 18.42%). Diversified restart assignments and a higher annealing starting temperature fixed all four misses on the unchanged corpus. No threshold was relaxed and no oracle is called by the solver.
-
-Final demo: independently valid; driving 225 min, F=2, J=226; naive baseline driving 297 min. Comparison: **72 fewer minutes**, adjusted-load spread **65 minutes lower**. Run `npm run demo` or `node dist/src/cli.js fixtures/u10-tigers.json` after building.
-
-Important limitations: exact oracle restricted to ≤6 stops/leg, ≤3 available drivers total, ≤4 legs; heuristic optimality is not guaranteed. Determinism uses fixed work rather than wall-clock termination; the 2-second target is measured, not an arbitrary-input deadline. Exhaustive feasibility repair and oracle reachable-set enumeration can grow expensive. No UI is shipped in this round.
-
-Public repository: https://github.com/jevgenijostin/carpoolsolver (default branch `main`).
-
-Final engine source revision: `6c7455eaed75087337d3ba20abe3303c2afca0dc`.
-
-[GitHub Actions run 41520437403](https://github.com/jevgenijostin/carpoolsolver/actions/runs/41520437403) completed on both matrix runners. **Both jobs failed solely on G7**, with G1–G6/G8–G9 passing. Both verified demo steps succeeded. G2 was 300/300 on each runner; both ran real browser-worker checks. The following report-only commit archives these downloaded artifacts without changing the engine or gates.
-
-| Runner | Node | G8 median | Raw runs (ms) | Result |
-| --- | --- | --- | --- | --- |
-| ubuntu-latest | v24.22.1 | 111.152747 ms | 117.566167, 111.152747, 113.669973, 108.893782, 109.339684 | 8/9; G7 red |
-| windows-latest | v24.22.2 | 131.443400 ms | 191.164600, 131.443400, 130.582600, 170.009000, 130.814900 | 8/9; G7 red |
-
-Downloaded CI evidence: [Ubuntu](reports/ci/ubuntu.json), [Windows](reports/ci/windows.json). Engine/source work and publication finished before the stated 03:30 Berlin engine freeze; this report was written before the 06:15 Berlin reporting deadline.
+CI verification for this fix is pending the push. The existing `reports/ci/ubuntu.json` and `reports/ci/windows.json` are historical evidence from run 41520437403 before the correction (8/9, G7 red), not results for this fix.

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T20:33:52.365Z",
+  "generatedAt": "2026-11-02T21:06:02.612Z",
   "node": "v24.17.0",
   "platform": "win32",
   "arch": "x64",
@@ -8,7 +8,7 @@
     {
       "id": "G1",
       "pass": true,
-      "seconds": 10.5694103,
+      "seconds": 9.2361091,
       "stats": {
         "importGraph": [
           "src/validator/index.ts",
@@ -31,7 +31,7 @@
     {
       "id": "G2",
       "pass": true,
-      "seconds": 25.7074821,
+      "seconds": 22.9909005,
       "stats": {
         "instances": 300,
         "matches": 300,
@@ -45,7 +45,7 @@
     {
       "id": "G3",
       "pass": true,
-      "seconds": 0.6525216999999975,
+      "seconds": 0.5686731999999974,
       "stats": {
         "microInstances": 50,
         "exactAgreementPercent": 100,
@@ -55,7 +55,7 @@
     {
       "id": "G4",
       "pass": true,
-      "seconds": 3.621393000000004,
+      "seconds": 3.6886388000000006,
       "stats": {
         "instances": 10,
         "byteIdenticalPercent": 100,
@@ -71,7 +71,7 @@
     {
       "id": "G5",
       "pass": true,
-      "seconds": 0.008586699999999838,
+      "seconds": 0.009213199999998324,
       "stats": {
         "cases": {
           "CAPACITY_SHORT": 5,
@@ -85,7 +85,7 @@
     {
       "id": "G6",
       "pass": true,
-      "seconds": 0.15951820000000588,
+      "seconds": 0.198274599999997,
       "stats": {
         "lambdaGrid": [
           0,
@@ -152,8 +152,8 @@
     },
     {
       "id": "G7",
-      "pass": false,
-      "seconds": 0.9760368000000017,
+      "pass": true,
+      "seconds": 0.600555100000005,
       "stats": {
         "sequentialWeeks": [
           {
@@ -273,37 +273,59 @@
         "maxCumulativeSpread": 6,
         "nonzeroHistory": {
           "beforeSum": 30,
-          "afterSum": 0,
-          "slack": 30,
+          "afterSum": 30,
+          "slack": 0,
           "allowedSlack": 1.5
         },
-        "exactFormulaImplemented": true
-      },
-      "error": "Brief contradiction: exact update changes history sum 30 -> 0, slack 30 >1.5"
+        "weightedHistoryCases": [
+          {
+            "weights": [
+              2,
+              1,
+              1
+            ],
+            "beforeSum": 30,
+            "afterSum": 29,
+            "slack": 1,
+            "allowedSlack": 1.5
+          },
+          {
+            "weights": [
+              2,
+              1,
+              1
+            ],
+            "beforeSum": -21,
+            "afterSum": -22,
+            "slack": 1,
+            "allowedSlack": 1.5
+          }
+        ]
+      }
     },
     {
       "id": "G8",
       "pass": true,
-      "seconds": 1.4382324000000009,
+      "seconds": 0.7973762999999963,
       "stats": {
         "legs": 10,
         "stopsPerLeg": 12,
         "availableDrivers": 6,
         "runsMs": [
-          274.24329999999463,
-          272.07880000000296,
-          298.8891999999978,
-          279.1785000000018,
-          305.4670000000042
+          140.62419999999838,
+          148.04260000000068,
+          137.94479999999749,
+          170.46779999999853,
+          196.38640000000305
         ],
-        "medianMs": 279.1785000000018,
+        "medianMs": 148.04260000000068,
         "limitMs": 3000
       }
     },
     {
       "id": "G9",
       "pass": true,
-      "seconds": 0.02615350000000035,
+      "seconds": 0.02602730000000156,
       "stats": {
         "roundTrips": 21,
         "malformedRejected": 10,

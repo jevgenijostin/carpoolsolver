@@ -2,7 +2,7 @@
 
 Local-first TypeScript engine for weekly youth-sport carpools. Includes a seeded weekly solver, independent validator, bounded exact oracle, signed-minute fairness ledger, naive baseline, JSON I/O, parent messages, browser Web Worker, and verified **U10 Tigers** CLI demo (9 kids, 6 households, 2 venues, 5 legs). No server or external routing service is required. UI and G10 are deferred.
 
-**Acceptance status: 8/9 green; G7 red.** The exact ledger formula in the brief contradicts its claimed conservation rule for nonzero history sums. The implementation preserves the formula and the gate reports the failure. `npm run gates` exits **1**, and both CI matrix jobs must remain red for this failure. See the explanation below; no gate is skipped or marked expected-failure.
+**Acceptance status: 9/9 green locally.** The ledger carry-forward uses weekly loads only, preserving incoming history within rounding slack. The in-week fairness objective still includes history. See [REPORT.md](REPORT.md) for measured results and CI evidence.
 
 ## Run
 
@@ -62,7 +62,7 @@ L_d = sum route minutes driven by d
 w_d = max(1, number of d's kids in the pool)
 W = sum w_d
 S = sum (H_d + L_d)
-mu = S / W
+muWeek = S / W
 F = sum |W*(H_d + L_d) - w_d*S| / W
 J = sum L_d + lambda*F
 ```
@@ -114,26 +114,20 @@ The usual minimum-cost Held–Karp baseline is O(m·2^n·n²). Retaining **all d
 
 Across legs, reachable sets are Minkowski sums of per-leg vectors. Deduplication keys include integer load vectors plus driver assignments on past legs whose windows can conflict with future legs. Keeping this overlap signature prevents discarding necessary assignment alternatives with the same load. The final objective selects the best reachable vector. Reachable-set size is data-dependent and can grow substantially even within the tiny bounds. The independent brute-force test separately enumerates assignments and permutations, computes route timing and objective itself, and shares no oracle/solver/core logic.
 
-## Ledger: exact formula and the red gate
+## Ledger carry-forward
 
-Confirmation validates the plan, then applies exactly:
+Confirmation validates the plan, then applies:
 
 ```text
-H'_d = H_d + L_d - round(w_d * mu)
-mu = sum(H + L) / W
+muCarry = sum L_d / W
+H'_d = H_d + L_d - round(w_d * muCarry)
 ```
+
+Carry-forward uses this week's loads only to preserve history; the in-week objective uses `muWeek = sum(H + L)/W`. Thus `sum H' - sum H = sum L - sum round(w_d * muCarry)`, bounded in magnitude by the number of households divided by two. F and J retain their original definitions.
 
 Positive H means over-driven. JavaScript `Math.round` defines half ties toward +∞. Storage adapters default to `localStorage` under `carpoolsolver.history.v1`; signed-integer history is JSON-exportable/importable. Confirmation is an explicit organizer action; solving never updates history.
 
-The brief also states `|sum H' - sum H| <= drivers/2`. This cannot hold for arbitrary allowed histories with the given formula:
-
-```text
-sum H' = S - sum round(w_d*S/W) ≈ 0
-```
-
-It recenters the sum near **zero**, not near the previous sum. G7 demonstrates a valid 3-family history `{h0:10,h1:10,h2:10}` whose sum changes **30 → 0**, a **30-minute** change against the **1.5-minute** allowance. The separate 8-week symmetric simulations at lambda=0.5 rotate scarce driving duties; both family counts stay within one typical leg (6 minutes), with zero observed weekly rounding slack. Those passing subchecks do not turn G7 green.
-
-Resolving this requires a specification decision: either change the conservation claim to `|sum H'| <= drivers/2`, or change the update to subtract `round(w_d * sum(L)/W)` if preserving the incoming sum is the intended invariant. Neither change has been silently applied.
+G7 retains the original 30-minute history counterexample, two 8-week rotation simulations, and weighted positive/negative history cases that exercise rounding.
 
 ## Gates and measured results
 
@@ -147,11 +141,11 @@ The seeded G2 corpus includes both directions, siblings, nonzero signed history,
 | G4 | PASS | 10/10 instances byte-identical across repeated Node main, Node worker, Chromium main, and actual Chromium module worker |
 | G5 | PASS | 20/20 constructed failures correctly diagnosed (100%; 5 per reason), also confirmed infeasible by oracle |
 | G6 | PASS | 100/100 adjacent lambda comparisons; 8 symmetric cases with spread 0 against typical-leg bound 6 min |
-| G7 | **FAIL** | 2 × 8-week simulations: spread ≤6 min, slack 0; nonzero-history case changes sum by 30 min, allowance 1.5 min |
-| G8 | PASS | Median **279.18 ms** (limit 3,000 ms); five runs: 274.24, 272.08, 298.89, 279.18, 305.47 ms |
+| G7 | PASS | 2 × 8-week simulations: spread ≤6 min, slack 0; nonzero history 30 → 30; weighted signed histories have slack 1 ≤1.5 min |
+| G8 | PASS | Median **148.0426 ms** (limit 3,000 ms); five runs: 140.6242, 148.0426, 137.9448, 170.4678, 196.3864 ms |
 | G9 | PASS | 21/21 exact JSON round-trips; 10/10 malformed inputs rejected readably; 1 fixed parent-message golden snapshot; ledger storage/JSON and naive demo validation |
 
-G8's timings are measurements, not constants asserted by the test. Gate output records every individual run. [Completed matrix CI](https://github.com/jevgenijostin/carpoolsolver/actions/runs/41520437403) confirmed **8/9 on both runners, solely G7 red**; verified demos succeeded. G8 medians were **111.15 ms on Ubuntu** and **131.44 ms on Windows**. Downloaded evidence and revision details are in [REPORT.md](REPORT.md) and `reports/ci/`.
+G8's timings are measurements, not constants asserted by the test. Gate output records every individual run. Current local measurements and CI evidence are documented in [REPORT.md](REPORT.md).
 
 ## Demo and files
 

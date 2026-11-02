@@ -228,11 +228,25 @@ await gate('G7', stats => {
       assert(slack <= families / 2 + 1e-9); assert(spread <= typical + 1e-9); i.history = next;
     }
   }
-  // Test the literal supplied claim on a legitimate signed integer history.
+  // Preserve the original nonzero-history counterexample as a regression.
   const i = symmetric(3, 1); i.history = { h0: 10, h1: 10, h2: 10 };
   const s = solve(i), next = confirmWeek(i, s), beforeSum = 30, afterSum = Object.values(next).reduce((a, b) => a + b, 0), slack = Math.abs(afterSum - beforeSum);
-  Object.assign(stats, { sequentialWeeks: weeks, maxWeeklySlack, maxCumulativeSpread, nonzeroHistory: { beforeSum, afterSum, slack, allowedSlack: 1.5 }, exactFormulaImplemented: true });
-  assert(slack <= 1.5, `Brief contradiction: exact update changes history sum ${beforeSum} -> ${afterSum}, slack ${slack} >1.5`);
+  Object.assign(stats, { sequentialWeeks: weeks, maxWeeklySlack, maxCumulativeSpread, nonzeroHistory: { beforeSum, afterSum, slack, allowedSlack: 1.5 } });
+  assert(slack <= 1.5, `Ledger changes history sum ${beforeSum} -> ${afterSum}, slack ${slack} >1.5`);
+  const weightedCases = [];
+  for (const history of [{ h0: 10, h1: 10, h2: 10 }, { h0: -20, h1: 3, h2: -4 }]) {
+    const weighted = symmetric(3, 1); weighted.history = history;
+    weighted.kids.push({ id: 'sibling', name: 'Sibling', householdId: 'h0' });
+    const plan = schedule(weighted, [[route(weighted, weighted.legs[0]!, 'h0', ['h0', 'h1', 'h2'])!]]);
+    checked(weighted, plan);
+    const carried = confirmWeek(weighted, plan);
+    // Six minutes split by weights 2:1:1 rounds to 3:2:2, giving one minute of slack.
+    assert.deepEqual(carried, { h0: history.h0 + 3, h1: history.h1 - 2, h2: history.h2 - 2 });
+    const before = Object.values(history).reduce((a, b) => a + b, 0), after = Object.values(carried).reduce((a, b) => a + b, 0);
+    assert(Math.abs(after - before) <= 1.5);
+    weightedCases.push({ weights: [2, 1, 1], beforeSum: before, afterSum: after, slack: Math.abs(after - before), allowedSlack: 1.5 });
+  }
+  stats.weightedHistoryCases = weightedCases;
 });
 
 await gate('G8', stats => {
