@@ -1,0 +1,286 @@
+{
+  "places": [
+    {
+      "id": "p0",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "p1",
+      "x": 1,
+      "y": 0.6
+    },
+    {
+      "id": "p2",
+      "x": 2,
+      "y": 0
+    },
+    {
+      "id": "p3",
+      "x": 0.5,
+      "y": 2
+    },
+    {
+      "id": "p4",
+      "x": 2.5,
+      "y": 1.5
+    },
+    {
+      "id": "p5",
+      "x": 3,
+      "y": 3
+    },
+    {
+      "id": "field",
+      "x": 4,
+      "y": 1
+    },
+    {
+      "id": "hall",
+      "x": 1,
+      "y": 4
+    }
+  ],
+  "households": [
+    {
+      "id": "h0",
+      "name": "Adler",
+      "placeId": "p0",
+      "seats": 4
+    },
+    {
+      "id": "h1",
+      "name": "Bauer",
+      "placeId": "p1",
+      "seats": 3
+    },
+    {
+      "id": "h2",
+      "name": "Chen",
+      "placeId": "p2",
+      "seats": 4
+    },
+    {
+      "id": "h3",
+      "name": "Diaz",
+      "placeId": "p3",
+      "seats": 3
+    },
+    {
+      "id": "h4",
+      "name": "Evans",
+      "placeId": "p4",
+      "seats": 4
+    },
+    {
+      "id": "h5",
+      "name": "Fischer",
+      "placeId": "p5",
+      "seats": 3
+    }
+  ],
+  "kids": [
+    {
+      "id": "k0",
+      "name": "Alex",
+      "householdId": "h0"
+    },
+    {
+      "id": "k1",
+      "name": "Ava",
+      "householdId": "h0"
+    },
+    {
+      "id": "k2",
+      "name": "Ben",
+      "householdId": "h1"
+    },
+    {
+      "id": "k3",
+      "name": "Cara",
+      "householdId": "h2"
+    },
+    {
+      "id": "k4",
+      "name": "Cleo",
+      "householdId": "h2"
+    },
+    {
+      "id": "k5",
+      "name": "Diego",
+      "householdId": "h3"
+    },
+    {
+      "id": "k6",
+      "name": "Ella",
+      "householdId": "h4"
+    },
+    {
+      "id": "k7",
+      "name": "Finn",
+      "householdId": "h5"
+    },
+    {
+      "id": "k8",
+      "name": "Freya",
+      "householdId": "h5"
+    }
+  ],
+  "venues": [
+    {
+      "id": "v0",
+      "name": "Tiger Field",
+      "placeId": "field"
+    },
+    {
+      "id": "v1",
+      "name": "Sports Hall",
+      "placeId": "hall"
+    }
+  ],
+  "legs": [
+    {
+      "id": "leg0",
+      "day": 1,
+      "venueId": "v0",
+      "dir": "to",
+      "kidIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8"
+      ],
+      "driverIds": [
+        "h1",
+        "h2",
+        "h3",
+        "h5"
+      ],
+      "winStart": 2430,
+      "winEnd": 2475
+    },
+    {
+      "id": "leg1",
+      "day": 1,
+      "venueId": "v0",
+      "dir": "from",
+      "kidIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8"
+      ],
+      "driverIds": [
+        "h0",
+        "h1",
+        "h2",
+        "h4",
+        "h5"
+      ],
+      "winStart": 2550,
+      "winEnd": 2595
+    },
+    {
+      "id": "leg2",
+      "day": 3,
+      "venueId": "v1",
+      "dir": "to",
+      "kidIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8"
+      ],
+      "driverIds": [
+        "h0",
+        "h1",
+        "h3",
+        "h4",
+        "h5"
+      ],
+      "winStart": 5310,
+      "winEnd": 5355
+    },
+    {
+      "id": "leg3",
+      "day": 3,
+      "venueId": "v1",
+      "dir": "from",
+      "kidIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8"
+      ],
+      "driverIds": [
+        "h0",
+        "h2",
+        "h3",
+        "h4"
+      ],
+      "winStart": 5430,
+      "winEnd": 5475
+    },
+    {
+      "id": "leg4",
+      "day": 5,
+      "venueId": "v1",
+      "dir": "to",
+      "kidIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8"
+      ],
+      "driverIds": [
+        "h1",
+        "h2",
+        "h3",
+        "h5"
+      ],
+      "winStart": 8190,
+      "winEnd": 8235
+    }
+  ],
+  "params": {
+    "speedKmh": 28,
+    "detour": 1.3,
+    "dwell": 2,
+    "maxRide": 45,
+    "lambda": 0.5,
+    "seed": 20261102
+  },
+  "history": {
+    "h0": 20,
+    "h1": -10,
+    "h2": 8,
+    "h3": -12,
+    "h4": -6,
+    "h5": 0
+  }
+}

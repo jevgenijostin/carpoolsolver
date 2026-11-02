@@ -1,0 +1,29 @@
+name: Engine gates
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  gates:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run gates
+      - name: Verified demo
+        if: always()
+        run: npm run demo
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gate-measurements-${{ matrix.os }}
+          path: reports/*.json

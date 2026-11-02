@@ -1,0 +1,24 @@
+{
+  "name": "carpoolsolver",
+  "version": "1.0.0",
+  "description": "Local-first weekly youth-sport carpool routing and fairness engine",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && esbuild src/solver/worker.ts src/browser.ts --bundle --format=esm --outdir=dist/web",
+    "test": "npm run gates",
+    "gates": "npm run build && node dist/tests/gates.js",
+    "demo": "npm run build && node dist/src/cli.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.64.1",
+    "typescript": "^5.9.3"
+  }
+}
